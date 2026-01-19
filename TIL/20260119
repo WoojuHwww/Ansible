@@ -1,0 +1,40 @@
+#2026/01/19
+#학습내용
+
+#DevOps 용어
+
+#CI
+-코드 융합시 깨지는 문제 해결 (GitHub Actions, Jenkins)
+#CD
+-빌드/테스트 통과 시 배포까지 연결 
+#IAC
+-자원 구성을 코드로 생성
+#Configuration Management
+-서버에 똑같은 상태를 만들고 유지
+#Monitoring/Logging
+-장애감지, 원인추적
+#Feedback Loop
+-op에서 나온 문제를 다시 개발로 반영
+
+#Ansible
+-DevOps에서 말하는 자동화 중에서 서버/패키지/서비스 상태를 표준화 하는 영역 
+
+#Ansible-core
+-Ansible 전체에서 실행 엔진만 분리 (다른 기능은 패키지 형태로 외부에 보관)
+
+#Ad-hoc
+- playbook 없이 한 줄 명령어로 즉시 작업을 실행
+- ansible [대상(pattern)] -m [모듈] -a "[모듈 인자]" [옵션]
+
+# Ad-hoc 중요 포인트 3가지
+1. 대상(pattern)
+2. 모듈(module)
+3. 인자(arguments)
+
+# AD-hoc 명령 기본 구조
+- ansible [옵션] [대상]
+- ansible  -m [모듈] -a "[모듈 인자]" [옵션]  [대상(pattern)] 
+
+
+
+

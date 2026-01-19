@@ -1,0 +1,27 @@
+#Ansible Basic Command
+
+vi test
+192.168.111.201
+192.168.111.202
+
+# 계정명을 따로 작성하지 않으면 root
+ansible  -i  test  -m ping  -k  all
+
+# guest 계정으로 연결 확인
+ansible  -i  test  -m ping  -u guest  -k  all
+
+# -u 옵션을 사용하여 접속 계정 확인
+ansible  -i test  -m shell  -a "whoami"   -k  all
+ansible  -i test  -m shell  -a "whoami"   -k  -u guest  all
+
+# root 권한 확인 (root 계정으로 접속 후 명령어 실행)
+ansible  -i  -m shell  -a "ls -l /root"  -k  all
+
+# guest 계정으로 root의 권한을 수행할 수 없다.
+ansible  -i test  -m shell  -a "ls -l /root"  -k  -u guest  all
+
+#-K = sudo , -b = become (권한 상승)
+ansible  -i test  -m shell  -a "ls -l /root"  -K -b  -u guest  all
+
+
+

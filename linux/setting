@@ -1,0 +1,46 @@
+#Ansible 초기 setting
+#1개의 Ansible-Server와 2개의 Ansible-node를 가진 환경 구축
+
+#Ansible-core 설치
+dnf  install  -y  ansible-core
+
+#inbentory 등록 (자신을 인벤토리 등록 후 테스트)
+vi inventory.ini
+[local]
+localhost ansible_connection=local
+
+#연결 확인
+[root@Ansible-Server ~]# ansible  -i inventory.ini  -m ping  local
+
+#inventory 등록
+vi /etc/ansible/hosts
+~~~~~~~~ 중간 생략 ~~~~~~~~
+[nginx]
+192.168.111.201 #node1-ip
+192.168.111.202 #node2-ip
+
+ansible  -m ping  all
+yes yes
+
+#루트 로그인 허용
+vi /etc/ssh/sshd_config
+systemctl  restart  sshd
+
+#ansible ping 확인
+ansible  -m ping -k all
+
+#ansible 설정 파일 확인
+cat /etc/ansible/ansible.cfg
+
+#계정 생성
+python3 -c "import crypt; print(crypt.crypt('dev1234', crypt.mksalt(crypt.METHOD_SHA512)))"
+-소스코드 복사-
+
+ansible -m user -a 'name=devuser password=$6$Z4irnExcrY14QqXJ$TwsvaWznJjQQ8fllvNKobVCKK56Eairh/ixN1ox/GS8mdGX52IWwjlDBLfvBuAdTJk78oHLbTa7.OqxK.4rcI/' -k nginx
+- password 부분에 key값 붙여넣기
+
+#계정 생성 확인
+-ansible  -m  shell -a "tail -5 /etc/passwd" -k  nginx
+-ansible  -m  shell -a "tail -2 /etc/shadow" -k  nginx
+-ssh devuser@192.168.111.201
+

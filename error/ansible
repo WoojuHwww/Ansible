@@ -1,0 +1,37 @@
+#Sudo 명령 에러
+
+#ansible -i test -m shell -a "ls -l /root" -u guest -K -b -k all
+-명령어 기입 시 에러 발생
+[root@Ansible-Server ~]# ansible  -i test  -m shell  -a "ls -l /root" -u guest  -K -b -k  all
+SSH password:
+BECOME password[defaults to SSH password]:
+192.168.111.202 | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "module_stderr": "Shared connection to 192.168.111.202 closed.\r\n",
+    "module_stdout": "\r\nguest은(는) sudoers 설정 파일에 없습니다.  이 시도를 보고합니다.\r\n",
+    "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error",
+    "rc": 1
+}
+192.168.111.201 | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "module_stderr": "Shared connection to 192.168.111.201 closed.\r\n",
+    "module_stdout": "\r\nguest은(는) sudoers 설정 파일에 없습니다.  이 시도를 보고합니다.\r\n",
+    "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error",
+    "rc": 1
+}
+
+#linux 초기 설정 시 sudo 명령어가 작동하지 않는 오류 발생
+
+#해결방법 1
+- visudo
+- guest    ALL=(ALL)       ALL   (명령어 추가)
+
+#해결방법 2
+- dnf install -y sudo (패키지 미설치 가능성)
+

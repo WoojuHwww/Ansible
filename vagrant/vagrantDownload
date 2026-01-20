@@ -1,0 +1,43 @@
+#vagrantDownload
+
+https://notepad-plus-plus.org/
+https://developer.hashicorp.com/vagrant
+
+#notepad ++에서 Vagrantfile 생성
+
+# vmware installer 설치
+https://developer.hashicorp.com/vagrant/install/vmware
+
+# VagrantVMware 동작 확인 (PowerShell x86 관리자 권한)
+PS C:\Windows\system32> Get-Service -Name vagrant-vmware-utility
+
+Status   	Name               	DisplayName
+------	----               	-----------
+Running 	 VagrantVMware	vagrant-vmware-utility
+
+PS C:\Windows\system32> dir C:\ProgramData\HashiCorp\vagrant-vmware-desktop\certificates
+
+
+    디렉터리: C:\ProgramData\HashiCorp\vagrant-vmware-desktop\certificates
+
+Mode     	LastWriteTime         	Length Name
+----      	-------------         	------ ----
+-a----	2026-01-20   오후 3:28        	1826 vagrant-utility.client.crt
+-a----  	2026-01-20   오후 3:28        	3247 vagrant-utility.client.key
+-a----  	2026-01-20   오후 3:28        	1842 vagrant-utility.crt
+-a----  	2026-01-20   오후 3:28        	3243 vagrant-utility.key
+
+#vagrant plugin 설치
+vagrant plugin install vagrant-vmware-desktop
+
+#vagrant node 설치
+vagrant up
+
+#vagrant node 상태 확인
+vagrant status
+
+#putty 접속 방법
+sudo -i : 관리자 접속
+vi /etc/ssh/sshd_config
+
+

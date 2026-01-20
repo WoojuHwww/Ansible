@@ -1,0 +1,31 @@
+---
+- hosts: nginx
+  become: yes
+
+  tasks:	
+    - name: epel-release-package-install
+      dnf:
+        name: epel-release
+        state: present
+
+    - name: nginx -package-install
+      dnf:
+        name: nginx
+        state: present
+
+    - name: nginx-service-start
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: nginx-firewall-open
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+
+    - name: firewall-reload
+      service:
+        name: firewalld
+        state: reloaded

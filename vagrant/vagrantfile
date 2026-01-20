@@ -1,0 +1,36 @@
+		# vagrantfile
+
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/rocky9"
+
+  # Ansible-Server
+  config.vm.define "Ansible-Server" do |server|
+    server.vm.hostname = "ansible-server"
+    server.vm.network "private_network", ip: "192.168.111.100"
+    server.vm.provider "vmware_desktop" do |v|
+      v.memory = 2048
+      v.cpus   = 2
+    end
+  end
+
+  config.vm.define "Ansible-Node1" do |node1|
+    node1.vm.hostname = "ansible-node1"
+    node1.vm.network "private_network", ip: "192.168.111.101"
+    node1.vm.provider "vmware_desktop" do |v|
+      v.memory = 1024
+      v.cpus   = 2
+    end
+  end
+
+  config.vm.define "Ansible-Node2" do |node2|
+    node2.vm.hostname = "ansible-node2"
+    node2.vm.network "private_network", ip: "192.168.111.102"
+    node2.vm.provider "vmware_desktop" do |v|
+      v.memory = 1024
+      v.cpus   = 2
+    end
+  end
+end

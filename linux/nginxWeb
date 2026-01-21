@@ -1,0 +1,48 @@
+#1개의 Server node와 3개의 node들을 이용한 ansible 설정
+
+# NGINX 배포
+mkdir nginx_lab
+cd nginx_lab/
+
+#test 실행
+ansible-playbook  nginx_install.yaml  --syntax-check
+
+ansible-playbook  nginx_install.yaml
+
+# posix collection 설치
+ansible-playbook  nginx_install.yaml  --syntax-ch
+
+-OS 종류 확인
+ # ansible soldesk -m setup -a "filter=ansible_distribution"
+
+
+-OS 버전 확인
+ # ansible soldesk -m setup -a "filter=ansible_distribution_version"
+
+
+-OS 계열 확인 (RedHat / Debian 등)
+ # ansible soldesk -m setup -a "filter=ansible_os_family"
+
+
+-호스트명 확인
+ # ansible soldesk -m setup -a "filter=ansible_hostname"
+
+
+-CPU 아키텍처 확인
+ # ansible soldesk -m setup -a "filter=ansible_architecture"
+
+
+-CPU 코어 수 확인
+ # ansible soldesk -m setup -a "filter=ansible_processor_vcpus"
+
+
+-메모리 전체 용량 확인
+ # ansible soldesk -m setup -a "filter=ansible_memtotal_mb"
+
+
+-기본 네트워크 인터페이스 확인
+ # ansible soldesk -m setup -a "filter=ansible_default_ipv4"
+
+
+-IP 주소만 간단히 확인
+ # ansible soldesk -m setup -a "filter=ansible_default_ipv4.address"

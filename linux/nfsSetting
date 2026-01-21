@@ -1,0 +1,36 @@
+path: /etc/exports
+ # 수정할 대상 파일 경로
+
+line: "/srv/nfs 192.168.111.0/24(rw,sync,no_root_squash)"
+ # 최종적으로 파일 안에 존재해야 하는 한 줄
+
+state: present
+ # present : 줄이 없으면 추가, 있으면 유지/수정 (기본값)
+ # absent  : 조건에 맞는 줄 삭제
+
+create: yes
+ # 파일이 없을 경우 새로 생성
+
+insertafter: EOF
+ # 줄을 파일의 맨 마지막에 추가
+ # insertbefore 옵션을 쓰면 특정 줄 앞에 삽입 가능
+
+owner: root
+ # 파일 소유자 설정
+
+group: root
+ # 파일 그룹 설정
+
+mode: '0644'
+ # 파일 권한 설정
+
+firstmatch: yes
+ # regexp에 여러 줄이 매칭될 경우 첫 번째 줄만 수정
+
+backrefs: yes
+ # regexp의 캡처 그룹을 line에서 재사용할 수 있게 함
+ # sed의 \1 같은 개념
+
+validate: '/usr/sbin/exportfs -ra'
+ # 파일 수정 후 문법/적용 검사
+ # 실패하면 수정 자체를 취소 (사고 방지용)

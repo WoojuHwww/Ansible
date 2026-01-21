@@ -1,0 +1,35 @@
+#Debug	
+
+-changed
+# 이 작업(Task)이 대상 시스템의 상태를 변경했는지 여부
+# true	: 실제로 무언가가 변경됨 (패키지 설치, 서비스 시작/재시작 등)
+# false	: 이미 원하는 상태라서 변경 없음
+
+-failed
+# 이 작업(Task)이 실패했는지 여부
+# true	: 작업 중 오류 발생 (명령 실패, 조건 불일치 등)
+# false	: 정상적으로 수행됨
+
+-state
+# 리소스의 "원하는 상태(desired state)"
+# started	: 서비스가 실행 중이어야 함
+# stopped  	: 서비스가 중지된 상태여야 함
+# present  	: 패키지/파일이 존재해야 함
+# absent   	: 패키지/파일이 없어야 함
+# 주로 service, dnf, file 같은 모듈에서 사용
+
+
+
+
+-status
+# 실제 현재 상태에 대한 상세 정보
+# service 모듈이나 register 결과에서 자주 등장
+# active (running)
+# inactive (dead)
+# enabled / disabled
+# 시스템이 보고하는 "현재 상태(actual state)"
+
+
+-rc : 명령 실행 결과 코드 (Return Code)
+# 0  : 정상 종료 (성공)
+# 1  : 일반적인 오류

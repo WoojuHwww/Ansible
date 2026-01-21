@@ -1,0 +1,57 @@
+---
+- name: Setup NFS server
+  hosts: localhost
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Install nfs-utils
+      dnf:
+        name: nfs-utils
+        state: present
+
+    - name: Create NFS shared directory
+      file:
+        path: /srv/nfs
+        state: directory
+        mode: '0777'
+
+    - name: Configure /etc/exports
+      lineinfile:
+        path: /etc/exports
+        line: "/srv/nfs 192.168.111.0/24(rw,sync,no_root_squash)"
+        create: yes
+
+    - name: Apply exportfs
+      command: exportfs -ra
+
+    - name: Enable and start NFS server
+      service:
+        name: nfs-server
+        state: started
+        enabled: yes
+
+
+- name: Setup NFS client (Rocky Linux 9)
+  hosts: soldesk
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Install nfs-utils
+      dnf:
+        name: nfs-utils
+        state: present
+
+    - name: Create mount point
+      file:
+        path: /mnt/nfs
+        state: directory
+
+    - name: Mount NFS share
+      ansible.posix.mount:
+        path: /mnt/nfs
+        src: 192.168.111.100:/srv/nfs
+        fstype: nfs
+        state: mounted
+

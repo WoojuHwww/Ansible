@@ -1,0 +1,12 @@
+#2026/01/21
+#학습내용
+
+#VaGrant 설정
+
+#Node 생성 후 SSH key 생성
+
+#RSA key값 배치 후 통신 확인
+
+#VaGrant를 사용한 NginxWeb서버 부팅 테스트
+
+#Ansible Debug, Debugger 개념 정리 및 디버깅

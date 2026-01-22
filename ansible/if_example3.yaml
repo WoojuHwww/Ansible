@@ -1,0 +1,9 @@
+---
+- name: if os message
+  hosts: soldesk
+  gather_facts: yes
+
+  tasks:
+  - name: os message print
+    ansible.builtin.debug:
+      msg: "{{ 'Memory 충분'  if  ansible_memtotal_mb >= 1460  else  'Memory 부족' }}"

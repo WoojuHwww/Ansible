@@ -1,0 +1,9 @@
+---
+- name: if os message
+  hosts: soldesk
+  gather_facts: yes
+
+  tasks:
+  - name: os message print
+    ansible.builtin.debug:
+      msg: "{{ 'Rocky Linux'  if  ansible_distribution == 'Rocky'  else  'Ubuntu Linux' }}"

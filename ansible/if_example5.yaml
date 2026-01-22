@@ -1,0 +1,14 @@
+---
+- name: if os message
+  hosts: soldesk
+  gather_facts: yes
+  become: yes
+
+  tasks:
+  - name: deploy config
+    ansible.builtin.template:
+      src: web.conf.j2
+      dest: /tmp/web.conf
+      owner: root
+      group: root
+

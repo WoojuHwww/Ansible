@@ -1,0 +1,19 @@
+---
+- name: if os message
+  hosts: soldesk
+  gather_facts: yes
+  become: yes
+
+  vars:
+    web_pkg: "{{  'httpd'  if  ansible_distribution == 'Rocky'  else  'nginx' }}"
+
+  tasks:
+  - name: web server install
+    ansible.builtin.package:
+      name: "{{ web_pkg }}"
+      state: present
+
+  - name: web server start
+    ansible.builtin.service:
+      name: "{{ web_pkg }}"
+      state: started

@@ -1,0 +1,26 @@
+#Jinja2 if 문법 
+
+-한 줄 if (값 선택 표현식)
+Ansible에서 제일 많이 쓰는 형태
+
+{{ 참값 if 조건 else 거짓값 }}
+
+예) web_pkg: "{{ 'httpd' if ansible_distribution == 'Rocky' else 'nginx' }}"
+ # 조건		: ansible_distribution == 'Rocky'
+ # 참이면	: httpd
+ # 짓이면	: nginx
+
+
+-블록 if (템플릿에서 많이 씀)
+{% if 조건 %}
+내용
+{% else %}
+내용
+{% endif %}
+
+-nginx.conf.j2 같은 템플릿에서
+{% if ansible_distribution == "Rocky" %}
+user apache;
+{% else %}
+user www-data;
+{% endif %}

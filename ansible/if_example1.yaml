@@ -1,0 +1,10 @@
+---
+- name: if basic local test
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+  - name: if example01
+    ansible.builtin.debug:
+      msg: "{{ 'true입니다.' if true else  'false입니다.' }}"
+  
